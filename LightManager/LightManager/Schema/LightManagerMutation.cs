@@ -6,7 +6,7 @@ namespace LightManager.Api.Schema
     {
         public LightManagerMutation()
         {
-            Name = "Mutation";
+            
         }
     }
 }

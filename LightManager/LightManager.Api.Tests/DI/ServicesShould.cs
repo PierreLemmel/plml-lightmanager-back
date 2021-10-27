@@ -1,3 +1,5 @@
+using GraphQL;
+using GraphQL.Types;
 using LightManager.Api.Schema;
 using LightManager.Tests.Utils.Sources;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +32,7 @@ namespace LightManager.Api.Tests.DI
         }
 
         [Test]
+        [GenericTestCaseSource(nameof(GraphQLSchemaTypes))]
         [GenericTestCaseSource(nameof(GraphQLTypes))]
         public void Resolve<TService>() where TService : class
         {
@@ -40,11 +43,19 @@ namespace LightManager.Api.Tests.DI
             Check.That(service).IsNotNull();
         }
 
-        public static IEnumerable<Type> GraphQLTypes => new Type[]
+        public static IEnumerable<Type> GraphQLSchemaTypes => new Type[]
         {
             typeof(LightManagerSchema),
+
             typeof(LightManagerQuery),
             typeof(LightManagerMutation),
+        };
+
+        public static IEnumerable<Type> GraphQLTypes => new Type[]
+        {
+            typeof(ISchema),
+            typeof(IDocumentExecuter),
+            typeof(IDocumentWriter)
         };
     }
 }

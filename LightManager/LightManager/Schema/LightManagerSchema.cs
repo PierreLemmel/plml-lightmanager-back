@@ -9,7 +9,9 @@ namespace LightManager.Api.Schema
         public LightManagerSchema(LightManagerQuery query, LightManagerMutation mutation)
         {
             Query = query;
-            Mutation = mutation;
+            //Mutation = mutation;
+
+            Description = "Light manager Schema";
         }
     }
 }

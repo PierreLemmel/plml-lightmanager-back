@@ -80,5 +80,7 @@ namespace LightManager
 
             return new string(chars);
         }
+
+        public static string Join(this IEnumerable<string> elts, string separator) => string.Join(separator, elts);
     }
 }
