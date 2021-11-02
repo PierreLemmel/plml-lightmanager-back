@@ -3,23 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Api", "LightManager\LightManager.Api.csproj", "{25F4D493-C5C0-4517-9797-43D44A077A62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Api", "LightManager\LightManager.Api.csproj", "{25F4D493-C5C0-4517-9797-43D44A077A62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Infrastructure", "LightManager.Infrastructure\LightManager.Infrastructure.csproj", "{FBAB7F33-4BD7-44BF-8D7B-30732BE00AAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Infrastructure", "LightManager.Infrastructure\LightManager.Infrastructure.csproj", "{FBAB7F33-4BD7-44BF-8D7B-30732BE00AAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Logic", "LightManager.Logic\LightManager.Logic.csproj", "{D4764019-72DA-464A-8003-6FBFE4604365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Logic", "LightManager.Logic\LightManager.Logic.csproj", "{D4764019-72DA-464A-8003-6FBFE4604365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Api.Tests", "LightManager.Api.Tests\LightManager.Api.Tests.csproj", "{0F630691-0224-4CFF-AAAC-4BBA82961D52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Api.Tests", "LightManager.Api.Tests\LightManager.Api.Tests.csproj", "{0F630691-0224-4CFF-AAAC-4BBA82961D52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{0C11D265-B34C-498A-8B1E-FBCAFB24A041}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B7FB59EF-3EBE-44C2-87E4-4A4DC564EF2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Tests.Utils", "LightManager.Tests.Utils\LightManager.Tests.Utils.csproj", "{B138F3A7-F568-4131-812F-E5B550C1360B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Tests.Utils", "LightManager.Tests.Utils\LightManager.Tests.Utils.csproj", "{B138F3A7-F568-4131-812F-E5B550C1360B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Core", "LightManager.Core\LightManager.Core.csproj", "{9E8B78E5-5AA5-4C41-9A46-13ADE6F60B76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Core", "LightManager.Core\LightManager.Core.csproj", "{9E8B78E5-5AA5-4C41-9A46-13ADE6F60B76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Core.Tests", "LightManager.Core.Tests\LightManager.Core.Tests.csproj", "{07410922-AC08-41A7-BF2A-6C82E98F475D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Core.Tests", "LightManager.Core.Tests\LightManager.Core.Tests.csproj", "{07410922-AC08-41A7-BF2A-6C82E98F475D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1B24F305-467F-49FF-AB06-BBE0072386A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.CLI", "LightManager.CLI\LightManager.CLI.csproj", "{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{07410922-AC08-41A7-BF2A-6C82E98F475D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07410922-AC08-41A7-BF2A-6C82E98F475D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07410922-AC08-41A7-BF2A-6C82E98F475D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,7 @@ Global
 		{B138F3A7-F568-4131-812F-E5B550C1360B} = {B7FB59EF-3EBE-44C2-87E4-4A4DC564EF2D}
 		{9E8B78E5-5AA5-4C41-9A46-13ADE6F60B76} = {0C11D265-B34C-498A-8B1E-FBCAFB24A041}
 		{07410922-AC08-41A7-BF2A-6C82E98F475D} = {B7FB59EF-3EBE-44C2-87E4-4A4DC564EF2D}
+		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9} = {1B24F305-467F-49FF-AB06-BBE0072386A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80B5F4C3-9984-4B15-93F3-66254DA071B1}

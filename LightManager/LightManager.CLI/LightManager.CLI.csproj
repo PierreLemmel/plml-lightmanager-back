@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\LightManager\appsettings.Development.json" Link="appsettings.Development.json" />
+    <Content Include="..\LightManager\appsettings.json" Link="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LightManager.Infrastructure\LightManager.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
