@@ -6,4 +6,12 @@
     <WarningsAsErrors>nullable</WarningsAsErrors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.90" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LightManager.Core\LightManager.Core.csproj" />
+  </ItemGroup>
+
 </Project>

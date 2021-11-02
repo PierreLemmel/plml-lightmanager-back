@@ -7,8 +7,6 @@ namespace LightManager.CLI
 {
     public static class Program
     {
-
-
         public static void Main(string[] args)
         {
             IConfiguration configuration = new ConfigurationBuilder()
