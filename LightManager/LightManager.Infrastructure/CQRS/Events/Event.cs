@@ -8,7 +8,7 @@ namespace LightManager.Infrastructure.CQRS.Events
         public DateTime Time { get; }
         public string EventType => GetType().Name;
 
-        public Event(DateTime time, Guid aggregateId)
+        protected Event(DateTime time, Guid aggregateId)
         {
             Time = time;
             AggregateId = aggregateId;
@@ -19,7 +19,7 @@ namespace LightManager.Infrastructure.CQRS.Events
     {
         public TData Data { get; }
 
-        public Event(DateTime time, Guid aggregateId, TData data) : base(time, aggregateId)
+        protected Event(DateTime time, Guid aggregateId, TData data) : base(time, aggregateId)
         {
             Data = data;
         }

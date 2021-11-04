@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Core.Tests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1B24F305-467F-49FF-AB06-BBE0072386A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.CLI", "LightManager.CLI\LightManager.CLI.csproj", "{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.CLI", "LightManager.CLI\LightManager.CLI.csproj", "{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Infrastructure.Tests", "LightManager.Infrastrcture.Tests\LightManager.Infrastructure.Tests.csproj", "{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{9E8B78E5-5AA5-4C41-9A46-13ADE6F60B76} = {0C11D265-B34C-498A-8B1E-FBCAFB24A041}
 		{07410922-AC08-41A7-BF2A-6C82E98F475D} = {B7FB59EF-3EBE-44C2-87E4-4A4DC564EF2D}
 		{F9C49AFA-2D16-4256-8401-C2C20FF28EA9} = {1B24F305-467F-49FF-AB06-BBE0072386A5}
+		{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC} = {B7FB59EF-3EBE-44C2-87E4-4A4DC564EF2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80B5F4C3-9984-4B15-93F3-66254DA071B1}
