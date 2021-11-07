@@ -41,6 +41,26 @@ namespace LightManager.Reflection
         public static Type GetGenericVersionOfInterface(this Type type, Type openGenericInterface)
             => type.GetGenericVersionsOfInterface(openGenericInterface).Single();
 
+        public static Type GetGenericVersionOfClassInInheritanceTree(this Type type, Type openGenericClass)
+        {
+            Type? current = type;
+
+            do
+            {
+                if (current != null)
+                {
+                    if (current.IsGenericVersionOf(openGenericClass))
+                    {
+                        return current;
+                    }
+                    current = current.BaseType;
+                }
+            }
+            while (current != null);
+
+            throw new InvalidOperationException($"Type '{type.Name}' does not contain generic class {openGenericClass.GetGenericName()} in its inheritance tree");
+        }
+
         public static IEnumerable<TAttribute> GetAllAttributes<TAttribute>(this ICustomAttributeProvider customAttributeProvider)
             where TAttribute : Attribute
             => customAttributeProvider.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>();
@@ -53,7 +73,7 @@ namespace LightManager.Reflection
             if (type.IsSubclassOf(classType))
                 return true;
 
-            if (type.IsGenericTypeDefinition)
+            if (type.IsGenericTypeDefinition || classType.IsGenericTypeDefinition)
             {
                 Type current = type;
 
@@ -73,8 +93,8 @@ namespace LightManager.Reflection
 
                 return false;
             }
-            else
-                return canBeEqualToClassType && (type == classType);
+
+            return canBeEqualToClassType && (type == classType);
         }
 
         public static bool InheritsFrom<TClass>(this Type type, bool canBeEqualToClassType = false) => type.IsSubclassOf(typeof(TClass)) || (canBeEqualToClassType && (type == typeof(TClass)));

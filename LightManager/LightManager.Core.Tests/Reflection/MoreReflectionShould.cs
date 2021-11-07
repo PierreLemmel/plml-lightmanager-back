@@ -243,6 +243,19 @@ namespace LightManager.Tests.Reflection
         public void GetGenericVersionsOfInterface_Should_Return_Correct_Value_When_Input_Does_Implement_Versions_Of_Interface(Type input, Type param, params Type[] expected) => Check
             .That(input.GetGenericVersionsOfInterface(param))
             .IsEquivalentTo(expected);
+
+        [Test]
+        [TestCase(typeof(SomeClass), typeof(SomeGenericClass<>))]
+        [TestCase(typeof(SomeDerivedClass), typeof(SomeGenericClass<>))]
+        public void GetGenericVersionOfClassInInheritanceTree_Should_Throw_InvalidOperationException_When_Class_Does_Not_Have_Open_Generic_In_Its_Inheritance_Tree(Type input, Type param) => Check
+            .ThatCode(() => input.GetGenericVersionOfClassInInheritanceTree(param))
+            .Throws<InvalidOperationException>();
+
+        [Test]
+        [TestCase(typeof(SomeNonGenericClassDerivedFromSomeGenericClass), typeof(SomeGenericClass<>), typeof(SomeGenericClass<SomeClass>))]
+        public void GetGenericVersionOfClassInInheritanceTree_Should_Return_Expected_When_Input_Has_Open_Generic_In_Its_Inheritance_Tree(Type input, Type param, Type expected) => Check
+            .That(input.GetGenericVersionOfClassInInheritanceTree(param))
+            .IsEqualTo(expected);
         #endregion
 
         #region InheritsFrom / Implements
@@ -287,6 +300,10 @@ namespace LightManager.Tests.Reflection
         [Test]
         [TestCase(typeof(SomeGenericClassDerivedFromSomeNonGenericParent<>), typeof(SomeNonGenericClass))]
         public void InheritsFrom_Returns_True_When_OpenGeneric_Inherits_From_Non_Generic_Class(Type openGenericChild, Type nonGenericParent) => Check.That(openGenericChild.InheritsFrom(nonGenericParent)).IsTrue();
+
+        [Test]
+        [TestCase(typeof(SomeNonGenericClassDerivedFromSomeGenericClass), typeof(SomeGenericClass<>))]
+        public void InheritsFrom_Returns_True_When_NonGeneric_Class_Has_Generic_Parent_In_Inheritance_Tree(Type nonGenericDerivedFromGeneric, Type genericParent) => Check.That(nonGenericDerivedFromGeneric.InheritsFrom(genericParent)).IsTrue();
 
         [Test]
         [TestCase(typeof(SomeClassImplementingSomeInterface))]
