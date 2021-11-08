@@ -1,6 +1,3 @@
-using GraphQL;
-using GraphQL.Types;
-using LightManager.Api.Schema;
 using LightManager.Infrastructure.CQRS.Commands;
 using LightManager.Infrastructure.CQRS.Events;
 using LightManager.Tests.Utils.Sources;
@@ -42,8 +39,6 @@ namespace LightManager.Api.Tests.DI
         }
 
         [Test]
-        [GenericTestCaseSource(nameof(GraphQLSchemaTypes))]
-        [GenericTestCaseSource(nameof(GraphQLTypes))]
         [GenericTestCaseSource(nameof(CqrsTypes))]
         [GenericTestCaseSource(nameof(ApiTypes))]
         public void Resolve<TService>() where TService : class
@@ -59,21 +54,6 @@ namespace LightManager.Api.Tests.DI
         {
             typeof(IEventStore),
             typeof(ICommandDispatcher)
-        };
-
-        public static IEnumerable<Type> GraphQLSchemaTypes => new Type[]
-        {
-            typeof(LightManagerSchema),
-
-            typeof(LightManagerQuery),
-            typeof(LightManagerMutation),
-        };
-
-        public static IEnumerable<Type> GraphQLTypes => new Type[]
-        {
-            typeof(ISchema),
-            typeof(IDocumentExecuter),
-            typeof(IDocumentWriter)
         };
 
         public static IEnumerable<Type> ApiTypes => new Type[]

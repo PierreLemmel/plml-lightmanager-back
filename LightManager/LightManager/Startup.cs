@@ -1,4 +1,3 @@
-using GraphiQl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,8 +26,6 @@ namespace LightManager.Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "LightManager v1"));
-
-                app.UseGraphiQl("/graphql");
             }
 
             app.UseHttpsRedirection();
