@@ -1,8 +1,7 @@
 using GraphQL;
 using GraphQL.Types;
 using LightManager.Api.Schema;
-using LightManager.Api.Tests.DI.Fakes;
-using LightManager.Infrastructure.CQRS.Aggregates;
+using LightManager.Infrastructure.CQRS.Commands;
 using LightManager.Infrastructure.CQRS.Events;
 using LightManager.Tests.Utils.Sources;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +10,7 @@ using NFluent;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace LightManager.Api.Tests.DI
@@ -21,7 +21,12 @@ namespace LightManager.Api.Tests.DI
         {
             ServiceCollection services = new();
 
-            IConfiguration configuration = new FakeConfiguration();
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory)!.FullName)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Development.json", optional: true)
+                .Build();
+
             Bootstraper.InitializeServices(services, configuration);
 
             IServiceProvider sp = services.BuildServiceProvider();
@@ -40,6 +45,7 @@ namespace LightManager.Api.Tests.DI
         [GenericTestCaseSource(nameof(GraphQLSchemaTypes))]
         [GenericTestCaseSource(nameof(GraphQLTypes))]
         [GenericTestCaseSource(nameof(CqrsTypes))]
+        [GenericTestCaseSource(nameof(ApiTypes))]
         public void Resolve<TService>() where TService : class
         {
             IServiceProvider container = BuildServiceProvider();
@@ -52,6 +58,7 @@ namespace LightManager.Api.Tests.DI
         public static IEnumerable<Type> CqrsTypes => new Type[]
         {
             typeof(IEventStore),
+            typeof(ICommandDispatcher)
         };
 
         public static IEnumerable<Type> GraphQLSchemaTypes => new Type[]
@@ -67,6 +74,11 @@ namespace LightManager.Api.Tests.DI
             typeof(ISchema),
             typeof(IDocumentExecuter),
             typeof(IDocumentWriter)
+        };
+
+        public static IEnumerable<Type> ApiTypes => new Type[]
+        {
+            typeof(IConfiguration)
         };
     }
 }

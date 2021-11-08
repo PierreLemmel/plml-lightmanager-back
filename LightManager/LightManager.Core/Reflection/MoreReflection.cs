@@ -108,6 +108,11 @@ namespace LightManager.Reflection
 
         public static bool IsCaptureClass(this Type type) => type.Name.Contains("<>c");
 
+        public static MethodInfo GetGenericMethodDefinition(this Type type, string name) => type
+            .GetMethods()
+            .Where(method => method.Name == name)
+            .First(method => method.IsGenericMethodDefinition);
+
         public static MethodInfo GetGenericMethodDefinition(this Type type, string name, BindingFlags bindingAttr) => type
             .GetMethods(bindingAttr)
             .Where(method => method.Name == name)

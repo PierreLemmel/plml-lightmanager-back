@@ -1,7 +1,9 @@
-﻿namespace LightManager.Infrastructure.CQRS.Commands
+﻿using System.Threading.Tasks;
+
+namespace LightManager.Infrastructure.CQRS.Commands
 {
     public interface ICommandDispatcher
     {
-        void Send<TCommand>(TCommand command) where TCommand : ICommand;
+        Task<CommandResult> Send(Command command);
     }
 }

@@ -318,7 +318,7 @@ namespace LightManager.Tests.Reflection
 
         [Test]
         [TestCase(typeof(ISomeDerivedInterface))]
-        public void Implements_Returns_False_When_Input_Is_Interface(Type input) => Check.That(input.Implements<ISomeInterface>()).IsFalse(); 
+        public void Implements_Returns_False_When_Input_Is_Interface(Type input) => Check.That(input.Implements<ISomeInterface>()).IsFalse();
         #endregion
 
     }

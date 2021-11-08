@@ -1,4 +1,5 @@
 ﻿using LightManager.Reflection;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,13 +35,22 @@ namespace LightManager.Infrastructure.CQRS.Events
 
             if (eventType.InheritsFrom(typeof(Event<>)))
             {
-                Type dataType = eventType.GetGenericVersionOfClassInInheritanceTree(typeof(Event<>));
+                Type dataType = eventType
+                    .GetGenericVersionOfClassInInheritanceTree(typeof(Event<>))
+                    .GenericTypeArguments
+                    .Single();
 
-                ConstructorInfo? ci = eventType.GetConstructor(new[] { typeof(DateTime), typeof(Guid) });
+                
+                ConstructorInfo? ci = eventType.GetConstructor(new[] { typeof(DateTime), typeof(Guid), dataType });
                 if (ci is null)
-                    throw new InvalidOperationException("Events without data must provide a constructor with the following arguments: (DateTime time, Guid aggregateId)");
+                    throw new InvalidOperationException("Events with data must provide a constructor with the following arguments: (DateTime time, Guid aggregateId, TData data)");
 
-                Expression body = Expression.New(ci, timeParameter, aggregateIdParameter);
+
+                MethodInfo deserialize = typeof(JsonConvert)
+                    .GetGenericMethodDefinition(nameof(JsonConvert.DeserializeObject))
+                    .MakeGenericMethod(dataType);
+
+                Expression body = Expression.New(ci, timeParameter, aggregateIdParameter, Expression.Call(deserialize, jsonDataParameter));
                 EventFactoryMethod factory = Expression.Lambda<EventFactoryMethod>(
                     body,
                     new[] { timeParameter, aggregateIdParameter, jsonDataParameter }

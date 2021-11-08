@@ -15,7 +15,7 @@ namespace LightManager.Tests.Utils.Sources
     {
         public GenericTestCaseSourceAttribute(string sourceName) : base(sourceName) { }
 
-        IEnumerable<TestMethod> ITestBuilder.BuildFrom(IMethodInfo method, Test suite)
+        IEnumerable<TestMethod> ITestBuilder.BuildFrom(IMethodInfo method, Test? suite)
         {
             if (!method.IsGenericMethodDefinition)
                 throw new InvalidOperationException($"{nameof(GenericTestCaseSourceAttribute)} should only apply to generic methods");
@@ -24,7 +24,7 @@ namespace LightManager.Tests.Utils.Sources
                 throw new NotSupportedException($"Only generic methods with 1 argument are supported yet");
 
             Type fixtureType = method.TypeInfo.Type;
-            PropertyInfo sourceProperty = fixtureType.GetProperty(SourceName) ?? throw new InvalidOperationException($"Source name must refer to a public static property. Provided source name: {SourceName}");
+            PropertyInfo sourceProperty = fixtureType.GetProperty(SourceName!) ?? throw new InvalidOperationException($"Source name must refer to a public static property. Provided source name: {SourceName}");
 
             object? objValue = sourceProperty.GetValue(null);
             if (objValue is not IEnumerable<Type> types)
