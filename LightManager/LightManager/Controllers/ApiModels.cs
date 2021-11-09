@@ -1,6 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using LightManager.Infrastructure.CQRS.Commands;
 
 namespace LightManager.Api.Controllers
 {
-    public record GraphQLRequest(string? OperationName, string Query, JObject? Variables);
+    public record AddCommandRequest(CommandApiModel Command);
+    public record AddCommandResponse(CommandResult Result);
+
+    public record CommandApiModel(string CommandType, string CommandData);
 }

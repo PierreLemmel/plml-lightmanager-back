@@ -26,10 +26,10 @@ namespace LightManager.Infrastructure.CQRS.Events
                 @event.AggregateId,
                 @event.Time,
                 @event.EventType,
-                JsonConvert.SerializeObject(@event)
+                JsonConvert.SerializeObject(@event.Data)
             );
 
-            string query = $@"INSERT INTO Events(
+            string query = @"INSERT INTO Events(
                                 id,
                                 aggregateId,
                                 time,

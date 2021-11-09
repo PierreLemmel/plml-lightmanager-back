@@ -14,10 +14,15 @@ namespace LightManager.Infrastructure.CQRS
         public static void AddCqrs(this IServiceCollection services, IReadOnlyCollection<Type> eventTypes, IReadOnlyCollection<Type> commandTypes)
         {
             services.AddSingleton<IEventDataMapping>(new EventDataMapping(eventTypes));
-            
+            services.AddSingleton<ICommandDataMapping>(new CommandDataMapping(commandTypes));
+
             services.AddTransient<IEventStore>(sp => new EventStore(
                 GetEventStoreConnection(sp),
                 sp.GetRequiredService<IEventDataMapping>()
+            ));
+
+            services.AddTransient<ICommandStore>(sp => new CommandStore(
+                GetEventStoreConnection(sp)
             ));
 
             services.AddSingleton<ICommandDispatcher, CommandDispatcher>();

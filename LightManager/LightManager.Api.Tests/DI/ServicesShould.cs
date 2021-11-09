@@ -53,7 +53,9 @@ namespace LightManager.Api.Tests.DI
         public static IEnumerable<Type> CqrsTypes => new Type[]
         {
             typeof(IEventStore),
-            typeof(ICommandDispatcher)
+            typeof(ICommandStore),
+            typeof(ICommandDispatcher),
+            typeof(ICommandDataMapping),
         };
 
         public static IEnumerable<Type> ApiTypes => new Type[]

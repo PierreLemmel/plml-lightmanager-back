@@ -34,8 +34,13 @@ namespace LightManager.CLI
             using NpgsqlCommand cmd = new();
             cmd.Connection = connection;
 
-            Console.WriteLine("Creating events table");
+            Console.WriteLine("Creating commands table");
             cmd.CommandText = Queries.CreateEventsTable;
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Commands table created");
+
+            Console.WriteLine("Creating events table");
+            cmd.CommandText = Queries.CreateCommandsTable;
             cmd.ExecuteNonQuery();
             Console.WriteLine("Events table created");
 
@@ -47,6 +52,16 @@ namespace LightManager.CLI
 
         private static class Queries
         {
+            public const string CreateCommandsTable = @"
+                CREATE TABLE IF NOT EXISTS Commands (
+                    id uuid PRIMARY KEY NOT NULL,
+                    time timestamp without time zone NOT NULL,
+                    commandType VARCHAR(63) NOT NULL,
+                    data VARCHAR(1000) NOT NULL,
+                    success BOOLEAN NOT NULL
+                )
+            ";
+
             public const string CreateEventsTable = @"
                 CREATE TABLE IF NOT EXISTS Events (
                     id uuid PRIMARY KEY NOT NULL,
