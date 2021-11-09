@@ -6,8 +6,4 @@
     <WarningsAsErrors>nullable</WarningsAsErrors>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Dmx512\" />
-  </ItemGroup>
-
 </Project>

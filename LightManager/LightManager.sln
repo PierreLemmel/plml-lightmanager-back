@@ -25,7 +25,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1B24F305
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.CLI", "LightManager.CLI\LightManager.CLI.csproj", "{F9C49AFA-2D16-4256-8401-C2C20FF28EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightManager.Infrastructure.Tests", "LightManager.Infrastrcture.Tests\LightManager.Infrastructure.Tests.csproj", "{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightManager.Infrastructure.Tests", "LightManager.Infrastrcture.Tests\LightManager.Infrastructure.Tests.csproj", "{F9B4CEBF-22F4-49DA-B21C-8342F9A5CFEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{58EDF43C-3306-44B6-A584-6E882812A1B5}"
+	ProjectSection(SolutionItems) = preProject
+		..\Data\dmx512.json = ..\Data\dmx512.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
