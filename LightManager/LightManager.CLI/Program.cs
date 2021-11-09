@@ -35,22 +35,22 @@ namespace LightManager.CLI
             cmd.Connection = connection;
 
             Console.WriteLine("Creating commands table");
-            cmd.CommandText = Queries.CreateEventsTable;
+            cmd.CommandText = EventStoreQueries.CreateEventsTable;
             cmd.ExecuteNonQuery();
             Console.WriteLine("Commands table created");
 
             Console.WriteLine("Creating events table");
-            cmd.CommandText = Queries.CreateCommandsTable;
+            cmd.CommandText = EventStoreQueries.CreateCommandsTable;
             cmd.ExecuteNonQuery();
             Console.WriteLine("Events table created");
 
             Console.WriteLine("Creating aggregates table");
-            cmd.CommandText = Queries.CreateAggregatesTable;
+            cmd.CommandText = EventStoreQueries.CreateAggregatesTable;
             cmd.ExecuteNonQuery();
             Console.WriteLine("Aggregates table created");
         }
 
-        private static class Queries
+        private static class EventStoreQueries
         {
             public const string CreateCommandsTable = @"
                 CREATE TABLE IF NOT EXISTS Commands (
