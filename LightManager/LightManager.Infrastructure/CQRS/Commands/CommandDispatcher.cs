@@ -8,7 +8,7 @@ namespace LightManager.Infrastructure.CQRS.Commands
 {
     internal class CommandDispatcher : ICommandDispatcher
     {
-        private readonly IDictionary<string, ICommandHandler> handlersCache;
+        private readonly IReadOnlyDictionary<string, ICommandHandler> handlersCache;
 
         public CommandDispatcher(IEnumerable<ICommandHandler> handlers)
         {

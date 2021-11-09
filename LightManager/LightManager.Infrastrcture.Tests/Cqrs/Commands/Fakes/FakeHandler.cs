@@ -15,7 +15,7 @@ namespace LightManager.Infrastructure.Tests.Cqrs.Commands.Fakes
             => new DelegateHandler<TCommand>(async command =>
             {
                 await handler(command);
-                return CommandResult.Ok;
+                return CommandResult.Ok();
             });
 
         public static ICommandHandler<TCommand> Create<TCommand>(Func<Task> handler)
@@ -23,7 +23,7 @@ namespace LightManager.Infrastructure.Tests.Cqrs.Commands.Fakes
             => new DelegateHandler<TCommand>(async _ =>
             {
                 await handler();
-                return CommandResult.Ok;
+                return CommandResult.Ok();
             });
 
         public static ICommandHandler<TCommand> Create<TCommand>(Func<TCommand, CommandResult> handler)
@@ -39,15 +39,15 @@ namespace LightManager.Infrastructure.Tests.Cqrs.Commands.Fakes
             => new DelegateHandler<TCommand>(_ =>
             {
                 handler();
-                return Task.FromResult(CommandResult.Ok);
+                return Task.FromResult(CommandResult.Ok());
             });
 
         public static ICommandHandler<TCommand> Empty<TCommand>() where TCommand : Command
-            => new DelegateHandler<TCommand>(_ => Task.FromResult(CommandResult.Ok));
+            => new DelegateHandler<TCommand>(_ => Task.FromResult(CommandResult.Ok()));
 
-        private class DelegateHandler<TCommand> : CommandHandler<TCommand> where TCommand : Command
+        private class DelegateHandler<TCommand> : CommandHandlerBase<TCommand> where TCommand : Command
         {
-            private Func<TCommand, Task<CommandResult>> innerHandler;
+            private readonly Func<TCommand, Task<CommandResult>> innerHandler;
 
             public DelegateHandler(Func<TCommand, Task<CommandResult>> innerHandler) => this.innerHandler = innerHandler;
 

@@ -26,6 +26,7 @@ namespace LightManager.Infrastructure.CQRS
             ));
 
             services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+            services.AddSingleton<IEventDispatcher, EventDispatcher>();
         }
 
         private static IDbConnection GetEventStoreConnection(IServiceProvider sp)

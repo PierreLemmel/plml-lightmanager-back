@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace LightManager.Infrastructure.CQRS.Commands
 {
-    public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : Command
+    public abstract class CommandHandlerBase<TCommand> : ICommandHandler<TCommand> where TCommand : Command
     {
         public abstract Task<CommandResult> Handle(TCommand command);
 

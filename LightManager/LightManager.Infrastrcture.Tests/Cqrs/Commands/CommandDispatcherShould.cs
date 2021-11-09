@@ -73,7 +73,7 @@ namespace LightManager.Infrastructure.Tests.Cqrs.Commands
                     FakeHandler.Empty<SomeOtherCommand>(),
                     FakeHandler.Empty<SomeCommandWithData>(),
                     FakeHandler.Empty<SomeOtherCommandWithData>(),
-                    FakeHandler.Create<SomeCommand>(sc => Task.FromResult(CommandResult.Ok)),
+                    FakeHandler.Create<SomeCommand>(sc => Task.FromResult(CommandResult.Ok())),
                 }
             }
         };
