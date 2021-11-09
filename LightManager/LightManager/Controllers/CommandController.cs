@@ -47,14 +47,14 @@ namespace LightManager.Api.Controllers
 
             await commandStore.Add(command, commandResult);
 
-            foreach(Event @event in commandResult.Events)
-            {
-                await eventDispatcher.Send(@event);
-                await eventStore.Add(@event);
-            }
-
             if (commandResult.Success)
             {
+                foreach (Event @event in commandResult.Events)
+                {
+                    await eventDispatcher.Send(@event);
+                    await eventStore.Add(@event);
+                }
+
                 return Ok(response);
             }
             else
