@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿namespace LightManager.Infrastructure.CQRS.Events;
 
-namespace LightManager.Infrastructure.CQRS.Events
+public interface IEventDispatcher
 {
-    public interface IEventDispatcher
-    {
-        Task Send(Event @event);
-    }
+    Task Send(Event @event);
 }

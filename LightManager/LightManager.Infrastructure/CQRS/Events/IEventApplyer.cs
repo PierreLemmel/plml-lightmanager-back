@@ -1,7 +1,6 @@
-﻿namespace LightManager.Infrastructure.CQRS.Events
+﻿namespace LightManager.Infrastructure.CQRS.Events;
+
+public interface IEventApplyer<TEvent> where TEvent : Event
 {
-    public interface IEventApplyer<TEvent> where TEvent : Event
-    {
-        void Apply(TEvent @vent);
-    }
+    void Apply(TEvent @vent);
 }

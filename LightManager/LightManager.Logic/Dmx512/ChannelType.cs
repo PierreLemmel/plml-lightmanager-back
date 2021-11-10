@@ -1,16 +1,15 @@
-﻿namespace LightManager.Logic.Dmx512
+﻿namespace LightManager.Logic.Dmx512;
+
+public enum ChannelType
 {
-    public enum ChannelType
-    {
-        Dimmer,
-        Stroboscope,
-        White,
-        Uv,
-        Cold,
-        Warm,
-        Amber,
-        Pan,
-        Tilt,
-        Color
-    }
+    Dimmer,
+    Stroboscope,
+    White,
+    Uv,
+    Cold,
+    Warm,
+    Amber,
+    Pan,
+    Tilt,
+    Color
 }

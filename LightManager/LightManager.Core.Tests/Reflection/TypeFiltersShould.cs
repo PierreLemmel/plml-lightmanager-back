@@ -1,10 +1,5 @@
-using NFluent;
-using NUnit.Framework;
 using LightManager.Reflection;
 using LightManager.Tests.Reflection.SampleClasses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace LightManager.Tests.Reflection
 {

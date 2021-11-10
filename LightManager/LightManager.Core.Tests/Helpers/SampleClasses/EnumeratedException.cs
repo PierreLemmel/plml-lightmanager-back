@@ -1,6 +1,3 @@
-using System;
+namespace LightManager.Core.Tests.Helpers.SampleClasses;
 
-namespace LightManager.Core.Tests.Helpers.SampleClasses
-{
-    public class EnumeratedException : Exception { }
-}
+public class EnumeratedException : Exception { }

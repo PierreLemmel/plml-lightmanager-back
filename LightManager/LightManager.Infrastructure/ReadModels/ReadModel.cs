@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace LightManager.Infrastructure.ReadModels;
 
-namespace LightManager.Infrastructure.ReadModels
-{
-    public abstract record ReadModel(
-        string Id,
-        string Name,
-        DateTime CreationTime,
-        DateTime? ModificationTime
-    );
+public abstract record ReadModel(
+    string Id,
+    string Name,
+    DateTime CreationTime,
+    DateTime? ModificationTime
+);
 
-    public record UserReadModel(
-        string Id,
-        string Name,
-        DateTime CreationTime,
-        DateTime? ModificationTime
-    ): ReadModel(Id, Name, CreationTime, ModificationTime);
-}
+public record UserReadModel(
+    string Id,
+    string Name,
+    DateTime CreationTime,
+    DateTime? ModificationTime
+) : ReadModel(Id, Name, CreationTime, ModificationTime);

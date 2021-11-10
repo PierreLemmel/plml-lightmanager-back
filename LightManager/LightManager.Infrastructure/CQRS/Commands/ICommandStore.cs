@@ -1,10 +1,6 @@
-using System;
-using System.Threading.Tasks;
+namespace LightManager.Infrastructure.CQRS.Commands;
 
-namespace LightManager.Infrastructure.CQRS.Commands
+public interface ICommandStore
 {
-    public interface ICommandStore
-    {
-        Task Add(Command command, CommandResult result);
-    }
+    Task Add(Command command, CommandResult result);
 }

@@ -1,14 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿namespace LightManager.Infrastructure.CQRS.Events;
 
-namespace LightManager.Infrastructure.CQRS.Events
+public interface IEventHandler
 {
-    public interface IEventHandler
-    {
-        Task Handle(Event @event);
-    }
+    Task Handle(Event @event);
+}
 
-    public interface IEventHandler<TEvent> : IEventHandler where TEvent : Event
-    {
-        Task Handle(TEvent @event);
-    }
+public interface IEventHandler<TEvent> : IEventHandler where TEvent : Event
+{
+    Task Handle(TEvent @event);
 }

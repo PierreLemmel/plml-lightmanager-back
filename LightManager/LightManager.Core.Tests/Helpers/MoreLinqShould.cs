@@ -1,9 +1,4 @@
 using LightManager.Core.Tests.Helpers.SampleClasses;
-using NFluent;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace LightManager.Core.Tests.Helpers
 {

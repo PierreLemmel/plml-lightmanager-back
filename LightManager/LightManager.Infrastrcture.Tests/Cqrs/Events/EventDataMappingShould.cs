@@ -1,88 +1,83 @@
 ﻿using LightManager.Infrastructure.CQRS.Events;
 using LightManager.Infrastructure.Tests.Cqrs.Events.SampleClasses;
 using Newtonsoft.Json;
-using NFluent;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace LightManager.Infrastructure.Tests.Cqrs.Events
+namespace LightManager.Infrastructure.Tests.Cqrs.Events;
+
+public class EventDataMappingShould
 {
-    public class EventDataMappingShould
+    [Test]
+    [TestCaseSource(nameof(InvalidConstructorInputs))]
+    public void Reject_Invalid_Inputs_In_Constructor(IEnumerable<Type> input) => Check
+        .ThatCode(() => new EventDataMapping(input))
+        .Throws<ArgumentException>();
+
+    [Test]
+    [TestCaseSource(nameof(ValidConstructorInputs))]
+    public void Accept_Valid_Inputs_In_Constructor(IEnumerable<Type> input) => Check
+        .ThatCode(() => new EventDataMapping(input))
+        .DoesNotThrow();
+
+    [Test]
+    [TestCaseSource(nameof(TypeNameNotInMappedTypes))]
+    public void Throw_InvalidOperationException_When_TypeName_Is_Not_In_Mapped_Types(
+        IEnumerable<Type> mappedTypes,
+        string typeName,
+        string jsonData)
     {
-        [Test]
-        [TestCaseSource(nameof(InvalidConstructorInputs))]
-        public void Reject_Invalid_Inputs_In_Constructor(IEnumerable<Type> input) => Check
-            .ThatCode(() => new EventDataMapping(input))
-            .Throws<ArgumentException>();
+        EventDataMapping mapping = new(mappedTypes);
 
-        [Test]
-        [TestCaseSource(nameof(ValidConstructorInputs))]
-        public void Accept_Valid_Inputs_In_Constructor(IEnumerable<Type> input) => Check
-            .ThatCode(() => new EventDataMapping(input))
-            .DoesNotThrow();
+        Check.ThatCode(() => mapping.MapEvent(DateTime.Now, Guid.NewGuid(), typeName, jsonData))
+            .Throws<InvalidOperationException>();
+    }
 
-        [Test]
-        [TestCaseSource(nameof(TypeNameNotInMappedTypes))]
-        public void Throw_InvalidOperationException_When_TypeName_Is_Not_In_Mapped_Types(
-            IEnumerable<Type> mappedTypes,
-            string typeName,
-            string jsonData)
-        {
-            EventDataMapping mapping = new(mappedTypes);
+    [Test]
+    public void Materializes_Event_Without_Data()
+    {
+        IEnumerable<Type> mappedTypes = new[] { typeof(SomeEvent), typeof(SomeEventWithData) };
 
-            Check.ThatCode(() => mapping.MapEvent(DateTime.Now, Guid.NewGuid(), typeName, jsonData))
-                .Throws<InvalidOperationException>();
-        }
+        EventDataMapping mapping = new(mappedTypes);
 
-        [Test]
-        public void Materializes_Event_Without_Data()
-        {
-            IEnumerable<Type> mappedTypes = new[] { typeof(SomeEvent), typeof(SomeEventWithData) };
+        DateTime time = DateTime.Now;
+        Guid aggregateId = Guid.NewGuid();
 
-            EventDataMapping mapping = new(mappedTypes);
+        Event result = mapping.MapEvent(time, aggregateId, typeof(SomeEvent).Name, "{}");
 
-            DateTime time = DateTime.Now;
-            Guid aggregateId = Guid.NewGuid();
+        Check.That(result).IsInstanceOf<SomeEvent>();
+        Check.That(result.Time).IsEqualTo(time);
+        Check.That(result.AggregateId).IsEqualTo(aggregateId);
+    }
 
-            Event result = mapping.MapEvent(time, aggregateId, typeof(SomeEvent).Name, "{}");
+    [Test]
+    public void Materializes_Event_With_Data()
+    {
+        IEnumerable<Type> mappedTypes = new[] { typeof(SomeEvent), typeof(SomeEventWithData) };
 
-            Check.That(result).IsInstanceOf<SomeEvent>();
-            Check.That(result.Time).IsEqualTo(time);
-            Check.That(result.AggregateId).IsEqualTo(aggregateId);
-        }
+        EventDataMapping mapping = new(mappedTypes);
 
-        [Test]
-        public void Materializes_Event_With_Data()
-        {
-            IEnumerable<Type> mappedTypes = new[] { typeof(SomeEvent), typeof(SomeEventWithData) };
+        DateTime time = DateTime.Now;
+        Guid aggregateId = Guid.NewGuid();
+        SomeData inputData = new(666, "Hello world!");
 
-            EventDataMapping mapping = new(mappedTypes);
+        Event result = mapping.MapEvent(time, aggregateId, typeof(SomeEventWithData).Name, JsonConvert.SerializeObject(inputData));
 
-            DateTime time = DateTime.Now;
-            Guid aggregateId = Guid.NewGuid();
-            SomeData inputData = new(666, "Hello world!");
+        Check.That(result).IsInstanceOf<SomeEventWithData>();
+        Check.That(result.Time).IsEqualTo(time);
+        Check.That(result.AggregateId).IsEqualTo(aggregateId);
 
-            Event result = mapping.MapEvent(time, aggregateId, typeof(SomeEventWithData).Name, JsonConvert.SerializeObject(inputData));
+        SomeEventWithData withData = (SomeEventWithData)result;
+        Check.That(withData.Data).IsEqualTo(inputData);
+    }
 
-            Check.That(result).IsInstanceOf<SomeEventWithData>();
-            Check.That(result.Time).IsEqualTo(time);
-            Check.That(result.AggregateId).IsEqualTo(aggregateId);
-
-            SomeEventWithData withData = (SomeEventWithData)result;
-            Check.That(withData.Data).IsEqualTo(inputData);
-        }
-
-        public static IEnumerable<object[]> ValidConstructorInputs => new object[][]
-        {
+    public static IEnumerable<object[]> ValidConstructorInputs => new object[][]
+    {
             new object[] { new Type[] { typeof(SomeEvent), typeof(SomeOtherEvent) } },
             new object[] { new Type[] { typeof(SomeEventWithData), typeof(SomeOtherEventWithData) } },
             new object[] { new Type[] { typeof(SomeEvent), typeof(SomeOtherEvent), typeof(SomeEventWithData), typeof(SomeOtherEventWithData) } },
-        };
+    };
 
-        public static IEnumerable<object[]> InvalidConstructorInputs => new object[][]
-        {
+    public static IEnumerable<object[]> InvalidConstructorInputs => new object[][]
+    {
             new object[] { new Type[] { typeof(object) } },
             new object[] { new Type[] { typeof(Event) } },
             new object[] { new Type[] { typeof(Event<>) } },
@@ -92,10 +87,10 @@ namespace LightManager.Infrastructure.Tests.Cqrs.Events
             new object[] { new Type[] { typeof(SomeEvent), typeof(SomeEventWithData), typeof(Event) } },
             new object[] { new Type[] { typeof(SomeEvent), typeof(SomeEventWithData), typeof(Event<>) } },
             new object[] { new Type[] { typeof(SomeEvent), typeof(SomeEventWithData), typeof(Event<SomeData>) } },
-        };
+    };
 
-        public static IEnumerable<object[]> TypeNameNotInMappedTypes => new object[][]
-        {
+    public static IEnumerable<object[]> TypeNameNotInMappedTypes => new object[][]
+    {
             new object[]
             {
                 new Type[]
@@ -116,6 +111,5 @@ namespace LightManager.Infrastructure.Tests.Cqrs.Events
                 typeof(SomeOtherEventWithData).Name,
                 JsonConvert.SerializeObject(new SomeOtherData(14.0f, true))
             }
-        };
-    }
+    };
 }

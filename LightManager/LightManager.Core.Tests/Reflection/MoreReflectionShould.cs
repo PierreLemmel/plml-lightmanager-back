@@ -1,10 +1,4 @@
-﻿using NFluent;
-using NUnit.Framework;
-using LightManager.Tests.Reflection.SampleClasses;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using LightManager.Tests.Reflection.SampleClasses;
 using LightManager.Reflection;
 
 namespace LightManager.Tests.Reflection

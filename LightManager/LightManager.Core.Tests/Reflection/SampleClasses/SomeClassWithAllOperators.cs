@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LightManager.Tests.Reflection.SampleClasses
+﻿namespace LightManager.Tests.Reflection.SampleClasses
 {
     public class SomeClassWithAllOperators
     {

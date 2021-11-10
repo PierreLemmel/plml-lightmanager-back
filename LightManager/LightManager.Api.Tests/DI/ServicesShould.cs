@@ -3,66 +3,60 @@ using LightManager.Infrastructure.CQRS.Events;
 using LightManager.Tests.Utils.Sources;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NFluent;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
-namespace LightManager.Api.Tests.DI
+namespace LightManager.Api.Tests.DI;
+
+public class ServicesShould
 {
-    public class ServicesShould
+    private IServiceProvider BuildServiceProvider()
     {
-        private IServiceProvider BuildServiceProvider()
-        {
-            ServiceCollection services = new();
+        ServiceCollection services = new();
 
-            IConfiguration configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory)!.FullName)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile("appsettings.Development.json", optional: true)
-                .Build();
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetParent(AppContext.BaseDirectory)!.FullName)
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.Development.json", optional: true)
+            .Build();
 
-            Bootstraper.InitializeServices(services, configuration);
+        Bootstraper.InitializeServices(services, configuration);
 
-            IServiceProvider sp = services.BuildServiceProvider();
+        IServiceProvider sp = services.BuildServiceProvider();
 
-            return sp;
-        }
+        return sp;
+    }
 
-        [Test]
-        public void BootstrapWithoutCrashing()
-        {
-            IServiceProvider sp = BuildServiceProvider();
-            Check.That(sp).IsNotNull();
-        }
+    [Test]
+    public void BootstrapWithoutCrashing()
+    {
+        IServiceProvider sp = BuildServiceProvider();
+        Check.That(sp).IsNotNull();
+    }
 
-        [Test]
-        [GenericTestCaseSource(nameof(CqrsTypes))]
-        [GenericTestCaseSource(nameof(ApiTypes))]
-        public void Resolve<TService>() where TService : class
-        {
-            IServiceProvider container = BuildServiceProvider();
+    [Test]
+    [GenericTestCaseSource(nameof(CqrsTypes))]
+    [GenericTestCaseSource(nameof(ApiTypes))]
+    public void Resolve<TService>() where TService : class
+    {
+        IServiceProvider container = BuildServiceProvider();
 
-            TService service = container.GetRequiredService<TService>();
+        TService service = container.GetRequiredService<TService>();
 
-            Check.That(service).IsNotNull();
-        }
+        Check.That(service).IsNotNull();
+    }
 
-        public static IEnumerable<Type> CqrsTypes => new Type[]
-        {
+    public static IEnumerable<Type> CqrsTypes => new Type[]
+    {
             typeof(IEventStore),
             typeof(IEventDispatcher),
             typeof(IEventDataMapping),
             typeof(ICommandStore),
             typeof(ICommandDispatcher),
             typeof(ICommandDataMapping),
-        };
+    };
 
-        public static IEnumerable<Type> ApiTypes => new Type[]
-        {
+    public static IEnumerable<Type> ApiTypes => new Type[]
+    {
             typeof(IConfiguration)
-        };
-    }
+    };
 }

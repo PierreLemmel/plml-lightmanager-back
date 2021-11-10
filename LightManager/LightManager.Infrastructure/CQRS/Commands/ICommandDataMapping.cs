@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace LightManager.Infrastructure.CQRS.Commands;
 
-namespace LightManager.Infrastructure.CQRS.Commands
+public interface ICommandDataMapping
 {
-    public interface ICommandDataMapping
-    {
-        Command MapCommand(DateTime time, string commandType, string jsonData);
-    }
+    Command MapCommand(DateTime time, string commandType, string jsonData);
 }

@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+namespace LightManager.Reflection;
 
-namespace LightManager.Reflection
-{
-    public record GenericTypeMap(Type GenericDefinition, IEnumerable<Type> Types);
-}
+public record GenericTypeMap(Type GenericDefinition, IEnumerable<Type> Types);
