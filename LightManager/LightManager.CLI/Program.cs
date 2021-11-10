@@ -13,7 +13,6 @@ namespace LightManager.CLI
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory)!.FullName)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile("appsettings.Development.json", optional: true)
-                .AddE
                 .Build();
 
             CreateEventStoreSchema(configuration);
