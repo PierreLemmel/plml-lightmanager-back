@@ -3,7 +3,7 @@
 public enum ChannelType
 {
     Dimmer,
-    Stroboscope,
+    Strobe,
     White,
     Uv,
     Cold,
@@ -11,5 +11,12 @@ public enum ChannelType
     Amber,
     Pan,
     Tilt,
-    Color
+    RgbColor,
+
+    Program,
+    ProgramSpeed,
+    SoundSensitivity,
+    Function,
+
+    UNSUPPORTED
 }

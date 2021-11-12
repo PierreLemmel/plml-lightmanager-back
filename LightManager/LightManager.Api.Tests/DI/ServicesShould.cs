@@ -1,3 +1,4 @@
+using Google.Cloud.Firestore;
 using LightManager.Infrastructure.CQRS.Commands;
 using LightManager.Infrastructure.CQRS.Events;
 using LightManager.Tests.Utils.Sources;
@@ -36,6 +37,7 @@ public class ServicesShould
     [Test]
     [GenericTestCaseSource(nameof(CqrsTypes))]
     [GenericTestCaseSource(nameof(ApiTypes))]
+    [GenericTestCaseSource(nameof(InfrastructureTypes))]
     public void Resolve<TService>() where TService : class
     {
         IServiceProvider container = BuildServiceProvider();
@@ -45,18 +47,23 @@ public class ServicesShould
         Check.That(service).IsNotNull();
     }
 
+    public static IEnumerable<Type> InfrastructureTypes => new Type[]
+    {
+        typeof(FirestoreDb),
+    };
+
     public static IEnumerable<Type> CqrsTypes => new Type[]
     {
-            typeof(IEventStore),
-            typeof(IEventDispatcher),
-            typeof(IEventDataMapping),
-            typeof(ICommandStore),
-            typeof(ICommandDispatcher),
-            typeof(ICommandDataMapping),
+        typeof(IEventStore),
+        typeof(IEventDispatcher),
+        typeof(IEventDataMapping),
+        typeof(ICommandStore),
+        typeof(ICommandDispatcher),
+        typeof(ICommandDataMapping),
     };
 
     public static IEnumerable<Type> ApiTypes => new Type[]
     {
-            typeof(IConfiguration)
+        typeof(IConfiguration)
     };
 }

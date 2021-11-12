@@ -9,7 +9,7 @@ namespace LightManager.Infrastructure.CQRS;
 
 public static class CqrsServicesExtensions
 {
-    public static void AddCqrs(this IServiceCollection services, IReadOnlyCollection<Type> eventTypes, IReadOnlyCollection<Type> commandTypes)
+    public static IServiceCollection AddCqrs(this IServiceCollection services, IReadOnlyCollection<Type> eventTypes, IReadOnlyCollection<Type> commandTypes)
     {
         services.AddSingleton<IEventDataMapping>(new EventDataMapping(eventTypes));
         services.AddSingleton<ICommandDataMapping>(new CommandDataMapping(commandTypes));
@@ -25,6 +25,8 @@ public static class CqrsServicesExtensions
 
         services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
         services.AddSingleton<IEventDispatcher, EventDispatcher>();
+
+        return services;
     }
 
     private static IDbConnection GetEventStoreConnection(IServiceProvider sp)

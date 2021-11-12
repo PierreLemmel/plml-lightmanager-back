@@ -1,5 +1,515 @@
 {
   "fixtureModels": [
+    // Fun Generation - SePar Quad LED RGB UV
+    {
+      "name": "SePar Quad LED RGB UV",
+      "manufacturer": "Fun Generation",
+      "type": "Color changer",
+      "channels": [
+        {
+          "name": "Color",
+          "type": "RgbColor"
+        },
+        {
+          "name": "Uv",
+          "type": "Uv"
+        },
+        {
+          "name": "Dimmer",
+          "type": "Dimmer"
+        },
+        {
+          "name": "Strobe",
+          "type": "Strobe"
+        },
+        {
+          "name": "Color / Programs",
+          "type": "Program",
+          "programs": [
+            {
+              "min": 0,
+              "max": 4,
+              "name": "No function"
+            },
+            {
+              "min": 5,
+              "max": 9,
+              "name": "Red"
+            },
+            {
+              "min": 10,
+              "max": 14,
+              "name": "Yellow"
+            },
+            {
+              "min": 15,
+              "max": 19,
+              "name": "Fawn"
+            },
+            {
+              "min": 20,
+              "max": 24,
+              "name": "Green"
+            },
+            {
+              "min": 25,
+              "max": 29,
+              "name": "Cyan"
+            },
+            {
+              "min": 30,
+              "max": 34,
+              "name": "Blue"
+            },
+            {
+              "min": 35,
+              "max": 39,
+              "name": "Purple"
+            },
+            {
+              "min": 40,
+              "max": 44,
+              "name": "Pink"
+            },
+            {
+              "min": 45,
+              "max": 49,
+              "name": "Amber"
+            },
+            {
+              "min": 50,
+              "max": 54,
+              "name": "Light red"
+            },
+            {
+              "min": 55,
+              "max": 59,
+              "name": "Light green"
+            },
+            {
+              "min": 60,
+              "max": 64,
+              "name": "Light blue"
+            },
+            {
+              "min": 65,
+              "max": 69,
+              "name": "Cold white"
+            },
+            {
+              "min": 70,
+              "max": 74,
+              "name": "Warm white"
+            },
+            {
+              "min": 75,
+              "max": 79,
+              "name": "UV"
+            },
+            {
+              "min": 80,
+              "max": 89,
+              "name": "Automatic show 2"
+            },
+            {
+              "min": 90,
+              "max": 99,
+              "name": "Automatic show 3"
+            },
+            {
+              "min": 100,
+              "max": 109,
+              "name": "Automatic show 4"
+            },
+            {
+              "min": 110,
+              "max": 119,
+              "name": "Automatic show 5"
+            },
+            {
+              "min": 120,
+              "max": 129,
+              "name": "Automatic show 6"
+            },
+            {
+              "min": 130,
+              "max": 139,
+              "name": "Automatic show 7"
+            },
+            {
+              "min": 140,
+              "max": 149,
+              "name": "Automatic show 8"
+            },
+            {
+              "min": 150,
+              "max": 159,
+              "name": "Automatic show 9"
+            },
+            {
+              "min": 160,
+              "max": 169,
+              "name": "Automatic show 10"
+            },
+            {
+              "min": 170,
+              "max": 179,
+              "name": "Automatic show 11"
+            },
+            {
+              "min": 180,
+              "max": 189,
+              "name": "Automatic show 12"
+            },
+            {
+              "min": 190,
+              "max": 255,
+              "name": "Music-controlled show"
+            }
+          ]
+        },
+        {
+          "name": "Program Speed",
+          "type": "ProgramSpeed"
+        },
+        {
+          "name": "Sound Sensitivity",
+          "type": "SoundSensitivity"
+        }
+      ],
+      "modes": [
+        {
+          "name": "8-Channels",
+          "channels": {
+            "0": "Color",
+            "3": "Uv",
+            "4": "Dimmer",
+            "5": "Strobe",
+            "6": "Color / Programs",
+            "7": "Program Speed"
+          }
+        },
+        {
+          "name": "6-Channels",
+          "channels": {
+            "0": "Color",
+            "3": "Uv",
+            "4": "Dimmer",
+            "5": "Strobe"
+          }
+        },
+        {
+          "name": "4-Channels",
+          "channels": {
+            "0": "Color",
+            "3": "Uv"
+          }
+        },
+        {
+          "name": "2-Channels",
+          "channels": {
+            "0": "Color / Programs",
+            "1": "Program Speed"
+          }
+        }
+      ]
+    },
 
+    // Fun Generation - SePar Quad LED RGBW
+    {
+      "name": "SePar Quad LED RGBW",
+      "manufacturer": "Fun Generation",
+      "type": "Color changer",
+      "channels": [
+        {
+          "name": "Color",
+          "type": "RgbColor"
+        },
+        {
+          "name": "White",
+          "type": "White"
+        },
+        {
+          "name": "Dimmer",
+          "type": "Dimmer"
+        },
+        {
+          "name": "Strobe",
+          "type": "Strobe"
+        },
+        {
+          "name": "Color / Programs",
+          "type": "Program",
+          "programs": [
+            {
+              "min": 0,
+              "max": 4,
+              "name": "No function"
+            },
+            {
+              "min": 5,
+              "max": 9,
+              "name": "Red"
+            },
+            {
+              "min": 10,
+              "max": 14,
+              "name": "Yellow"
+            },
+            {
+              "min": 15,
+              "max": 19,
+              "name": "Fawn"
+            },
+            {
+              "min": 20,
+              "max": 24,
+              "name": "Green"
+            },
+            {
+              "min": 25,
+              "max": 29,
+              "name": "Cyan"
+            },
+            {
+              "min": 30,
+              "max": 34,
+              "name": "Blue"
+            },
+            {
+              "min": 35,
+              "max": 39,
+              "name": "Purple"
+            },
+            {
+              "min": 40,
+              "max": 44,
+              "name": "Pink"
+            },
+            {
+              "min": 45,
+              "max": 49,
+              "name": "Amber"
+            },
+            {
+              "min": 50,
+              "max": 54,
+              "name": "Light red"
+            },
+            {
+              "min": 55,
+              "max": 59,
+              "name": "Light green"
+            },
+            {
+              "min": 60,
+              "max": 64,
+              "name": "Light blue"
+            },
+            {
+              "min": 65,
+              "max": 69,
+              "name": "Cold white"
+            },
+            {
+              "min": 70,
+              "max": 74,
+              "name": "Warm white"
+            },
+            {
+              "min": 75,
+              "max": 79,
+              "name": "White"
+            },
+            {
+              "min": 80,
+              "max": 89,
+              "name": "Automatic show 2"
+            },
+            {
+              "min": 90,
+              "max": 99,
+              "name": "Automatic show 3"
+            },
+            {
+              "min": 100,
+              "max": 109,
+              "name": "Automatic show 4"
+            },
+            {
+              "min": 110,
+              "max": 119,
+              "name": "Automatic show 5"
+            },
+            {
+              "min": 120,
+              "max": 129,
+              "name": "Automatic show 6"
+            },
+            {
+              "min": 130,
+              "max": 139,
+              "name": "Automatic show 7"
+            },
+            {
+              "min": 140,
+              "max": 149,
+              "name": "Automatic show 8"
+            },
+            {
+              "min": 150,
+              "max": 159,
+              "name": "Automatic show 9"
+            },
+            {
+              "min": 160,
+              "max": 169,
+              "name": "Automatic show 10"
+            },
+            {
+              "min": 170,
+              "max": 179,
+              "name": "Automatic show 11"
+            },
+            {
+              "min": 180,
+              "max": 189,
+              "name": "Automatic show 12"
+            },
+            {
+              "min": 190,
+              "max": 255,
+              "name": "Music-controlled show"
+            }
+          ]
+        },
+        {
+          "name": "Program Speed",
+          "type": "ProgramSpeed"
+        },
+        {
+          "name": "Sound Sensitivity",
+          "type": "SoundSensitivity"
+        }
+      ],
+      "modes": [
+        {
+          "name": "8-Channels",
+          "channels": {
+            "0": "Color",
+            "3": "White",
+            "4": "Dimmer",
+            "5": "Strobe",
+            "6": "Color / Programs",
+            "7": "Program Speed"
+          }
+        },
+        {
+          "name": "6-Channels",
+          "channels": {
+            "0": "Color",
+            "3": "White",
+            "4": "Dimmer",
+            "5": "Strobe"
+          }
+        },
+        {
+          "name": "4-Channels",
+          "channels": {
+            "0": "Color",
+            "3": "White"
+          }
+        },
+        {
+          "name": "2-Channels",
+          "channels": {
+            "0": "Color / Programs",
+            "1": "Program Speed"
+          }
+        }
+      ]
+    },
+
+    // Stairville - Wild Wash 132 LED RGB DMX
+    {
+      "name": "Wild Wash 132 LED RGB DMX",
+      "manufacturer": "Stairville",
+      "type": "LED Bar",
+      "channels": [
+        {
+          "name": "Dimmer",
+          "type": "Dimmer"
+        },
+        {
+          "name": "Function",
+          "type": "Function"
+        },
+        {
+          "name": "Color",
+          "type": "RgbColor"
+        },
+        {
+          "name": "Sound Sensitivity",
+          "type": "SoundSensitivity"
+        }
+      ],
+      "modes": [
+        {
+          "name": "6-channels",
+          "channels": {
+            "0": "Dimmer",
+            "1": "Function",
+            "2": "Color",
+            "5": "Sound Sensitivity"
+          }
+        }
+      ]
+    },
+
+    // Stairville - DCL Flat Par 5x4W 2in1 CW/WW
+    {
+      "name": "DCL Flat Par 5x4W 2in1 CW/WW",
+      "manufacturer": "Stairville",
+      "type": "Color changer",
+      "channels": [
+        {
+          "name": "Dimmer",
+          "type": "Dimmer"
+        },
+        {
+          "name": "Cold white",
+          "type": "Cold"
+        },
+        {
+          "name": "Warm white",
+          "type": "Warm"
+        },
+        {
+          "name": "Program",
+          "type": "Program"
+        },
+        {
+          "name": "Function",
+          "type": "Function"
+        },
+        {
+          "name": "Strobe",
+          "type": "Strobe"
+        }
+      ],
+      "modes": [
+        {
+          "name": "6-channels",
+          "channels": {
+            "0": "Dimmer",
+            "1": "Warm white",
+            "2": "Cold white",
+            "3": "Program",
+            "4": "Function",
+            "5": "strobe"
+          }
+        }
+      ]
+    }
   ]
 }

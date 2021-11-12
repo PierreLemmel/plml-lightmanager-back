@@ -1,4 +1,5 @@
-﻿using LightManager.Infrastructure.CQRS;
+﻿using LightManager.Infrastructure;
+using LightManager.Infrastructure.CQRS;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -19,6 +20,8 @@ public static class Bootstraper
         IReadOnlyCollection<Type> commandTypes = new List<Type>() { };
 
         services.AddCqrs(eventTypes, commandTypes);
+        services.AddInfrastructure(configuration);
+
         services.AddSingleton(configuration);
     }
 }
