@@ -5,45 +5,45 @@ namespace LightManager.CLI.Firestore;
 [FirestoreData]
 public class FixtureModelDataModel
 {
-    [FirestoreProperty]
+    [FirestoreProperty("name")]
     public string Name { get; init; } = "";
 
-    [FirestoreProperty]
+    [FirestoreProperty("manufacturer")]
     public string Manufacturer { get; init; } = "";
 
-    [FirestoreProperty]
+    [FirestoreProperty("type")]
     public string Type { get; init; } = "";
 
-    [FirestoreProperty]
+    [FirestoreProperty("channels")]
     public ChannelDataModel[] Channels { get; init; } = Array.Empty<ChannelDataModel>();
 
-    [FirestoreProperty]
+    [FirestoreProperty("modes")]
     public FixtureModeDataModel[] Modes { get; init; } = Array.Empty<FixtureModeDataModel>();
 }
 
 [FirestoreData]
 public class ChannelDataModel
 {
-    [FirestoreProperty]
+    [FirestoreProperty("name")]
     public string Name { get; init; } = "";
 
-    [FirestoreProperty]
-    public ChannelType Type { get; init; }
+    [FirestoreProperty("type")]
+    public string Type { get; init; } = "";
 }
 
 [FirestoreData]
 public class FixtureModeDataModel
 {
-    [FirestoreProperty]
+    [FirestoreProperty("name")]
     public string Name { get; init; } = "";
 
-    [FirestoreProperty]
+    [FirestoreProperty("channels")]
     public Dictionary<string, string> Channels { get; init; } = new();
 }
 
 [FirestoreData]
 public class DataFileLayout
 {
-    [FirestoreProperty]
+    [FirestoreProperty("fixtureModels")]
     public FixtureModelDataModel[] FixtureModels { get; init; } = Array.Empty<FixtureModelDataModel>();
 }
