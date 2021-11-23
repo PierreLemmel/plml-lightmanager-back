@@ -1,4 +1,5 @@
-﻿using LightManager.Infrastructure;
+﻿using LightManager.Api.Swagger;
+using LightManager.Infrastructure;
 using LightManager.Infrastructure.CQRS;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,9 @@ public static class Bootstraper
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "LightManager", Version = "v1" });
+
+            c.SchemaFilter<CommandsSchemaFilter>();
+
         });
 
         IReadOnlyCollection<Type> eventTypes = new List<Type>() { };

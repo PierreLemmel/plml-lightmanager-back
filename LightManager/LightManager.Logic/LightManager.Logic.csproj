@@ -6,4 +6,8 @@
     <WarningsAsErrors>nullable</WarningsAsErrors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LightManager.Infrastructure\LightManager.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

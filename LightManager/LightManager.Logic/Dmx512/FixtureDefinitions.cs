@@ -4,10 +4,17 @@ public record FixtureModelDefinition(
     string Name,
     string Manufacturer,
     string Type,
-    ChannelDefinition[] Channels,
-    FixtureModeDefinition[] Modes
+
+    IReadOnlyCollection<ChannelDefinition> Channels,
+    IReadOnlyCollection<FixtureModeDefinition> Modes
 );
 
-public record ChannelDefinition(string Name, ChannelType Type);
+public record ChannelDefinition(
+    string Name,
+    ChannelType Type
+);
 
-public record FixtureModeDefinition(string Name, IReadOnlyDictionary<int, string> Channels);
+public record FixtureModeDefinition(
+    string Name,
+    IReadOnlyDictionary<int, ChannelType> Channels
+);
